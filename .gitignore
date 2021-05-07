@@ -1,0 +1,8 @@
+source/physical-event-simulation/.vs
+source/physical-event-simulation/debug
+source/physical-event-simulation/release
+source/physical-event-simulation/x64
+
+*.vcxproj.user
+*.exe
+*.dll

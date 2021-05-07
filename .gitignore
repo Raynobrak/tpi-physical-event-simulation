@@ -6,3 +6,6 @@ source/physical-event-simulation/x64
 *.vcxproj.user
 *.exe
 *.dll
+*.lib
+*.pdb
+*.cmake

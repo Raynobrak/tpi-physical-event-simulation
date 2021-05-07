@@ -146,14 +146,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="libs\charbrary-2.0.0\single-include\charbrary.cpp" />
-    <ClCompile Include="libs\cpp-sfml-app-base-class\sfml-base-class\ExampleApplication.cpp" />
-    <ClCompile Include="libs\cpp-sfml-app-base-class\sfml-base-class\SFMLApplicationBase.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\charbrary-2.0.0\single-include\charbrary.h" />
-    <ClInclude Include="libs\cpp-sfml-app-base-class\sfml-base-class\ExampleApplication.h" />
-    <ClInclude Include="libs\cpp-sfml-app-base-class\sfml-base-class\SFMLApplicationBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

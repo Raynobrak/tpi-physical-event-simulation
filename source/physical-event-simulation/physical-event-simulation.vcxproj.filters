@@ -3,20 +3,28 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="libs\charbrary-2.0.0\single-include\charbrary.cpp">
-      <Filter>libraries\charbrary</Filter>
+      <Filter>charbrary</Filter>
     </ClCompile>
+    <ClCompile Include="MainMenuApplication.cpp" />
+    <ClCompile Include="SFMLApplicationBase.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Label.cpp" />
+    <ClCompile Include="get_default_font.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="libraries">
+    <Filter Include="charbrary">
       <UniqueIdentifier>{6b36b6df-8f22-418e-ac4d-c833828ed275}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="libraries\charbrary">
-      <UniqueIdentifier>{dd75d9ba-0a4f-4f05-8eb6-7be8ff3a2fab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\charbrary-2.0.0\single-include\charbrary.h">
-      <Filter>libraries\charbrary</Filter>
+      <Filter>charbrary</Filter>
     </ClInclude>
+    <ClInclude Include="MainMenuApplication.h" />
+    <ClInclude Include="SFMLApplicationBase.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Label.h" />
+    <ClInclude Include="get_default_font.h" />
+    <ClInclude Include="color_palette.h" />
   </ItemGroup>
 </Project>

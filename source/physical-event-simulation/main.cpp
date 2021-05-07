@@ -1,5 +1,8 @@
 #include <iostream>
 
+#include "MainMenuApplication.h"
+
 int main() {
-	std::cout << "hello world!" << std::endl;
+	MainMenuApplication menu;
+	menu.run();
 }

@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>libs/charbrary-2.0.0/single-include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -102,6 +103,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>libs/charbrary-2.0.0/single-include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>libs/SFML-2.5.1-64/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>libs/charbrary-2.0.0/single-include;libs/SFML-2.5.1-64/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,7 +135,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>libs/SFML-2.5.1-64/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>libs/charbrary-2.0.0/single-include;libs/SFML-2.5.1-64/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,11 +147,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="get_default_font.cpp" />
+    <ClCompile Include="Label.cpp" />
+    <ClCompile Include="MainMenuApplication.cpp" />
     <ClCompile Include="libs\charbrary-2.0.0\single-include\charbrary.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SFMLApplicationBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="color_palette.h" />
+    <ClInclude Include="get_default_font.h" />
+    <ClInclude Include="Label.h" />
+    <ClInclude Include="MainMenuApplication.h" />
     <ClInclude Include="libs\charbrary-2.0.0\single-include\charbrary.h" />
+    <ClInclude Include="SFMLApplicationBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

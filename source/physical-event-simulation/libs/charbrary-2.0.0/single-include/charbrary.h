@@ -17,7 +17,7 @@ limitations under the License. */
 #pragma once
 
 // Uncomment the following line to use the vectors from the SFML library.
-// #define USE_SFML_VECTORS 1
+#define USE_SFML_VECTORS 1
 
 #include <string>
 

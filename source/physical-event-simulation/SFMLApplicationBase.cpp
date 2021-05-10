@@ -6,6 +6,8 @@ void SFMLApplicationBase::initApplication(SFMLApplicationSettings settings) {
 	windowClearColor_ = settings.backgroundColor;
 	fixedTimeStep_ = settings.fixedTimeStep;
 	fps_ = settings.fps;
+	exitApplication_ = false;
+	originalSettings_ = settings;
 }
 
 void SFMLApplicationBase::run() {
@@ -15,19 +17,21 @@ void SFMLApplicationBase::run() {
 
 	float timeBetweenFrames = 1.f / fps_;
 
-	while (window_.isOpen()) {
-		while (window_.pollEvent(event)) {
-			handleEvent(event);
-		}
+	while (!exitApplication_) {
+		while (window_.isOpen()) {
+			while (window_.pollEvent(event)) {
+				handleEvent(event);
+			}
 
-		if (updateClock.getElapsedTime().asSeconds() >= fixedTimeStep_) {
-			updateClock.restart();
-			update(fixedTimeStep_);
-		}
+			if (updateClock.getElapsedTime().asSeconds() >= fixedTimeStep_) {
+				updateClock.restart();
+				update(fixedTimeStep_);
+			}
 
-		if (renderClock.getElapsedTime().asSeconds() >= timeBetweenFrames) {
-			renderClock.restart();
-			render();
+			if (renderClock.getElapsedTime().asSeconds() >= timeBetweenFrames) {
+				renderClock.restart();
+				render();
+			}
 		}
 	}
 }
@@ -41,7 +45,16 @@ sf::Vector2f SFMLApplicationBase::getWindowSize() const {
 }
 
 void SFMLApplicationBase::exitApplication() {
+	closeWindow();
+	exitApplication_ = true;
+}
+
+void SFMLApplicationBase::closeWindow() {
 	window_.close();
+}
+
+void SFMLApplicationBase::showWindow() {
+	initApplication(originalSettings_);
 }
 
 void SFMLApplicationBase::drawOnWindow(const sf::Drawable& d, const sf::RenderStates states) {

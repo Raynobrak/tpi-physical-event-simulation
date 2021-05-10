@@ -10,6 +10,11 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="get_default_font.cpp" />
+    <ClCompile Include="BallisticSimulationApp.cpp" />
+    <ClCompile Include="CollisionSimulationApp.cpp" />
+    <ClCompile Include="ProjectileLauncher.cpp" />
+    <ClCompile Include="DraggableCircle.cpp" />
+    <ClCompile Include="LauncherSling.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="charbrary">
@@ -26,5 +31,11 @@
     <ClInclude Include="Label.h" />
     <ClInclude Include="get_default_font.h" />
     <ClInclude Include="color_palette.h" />
+    <ClInclude Include="BallisticSimulationApp.h" />
+    <ClInclude Include="CollisionSimulationApp.h" />
+    <ClInclude Include="ProjectileLauncher.h" />
+    <ClInclude Include="DraggableCircle.h" />
+    <ClInclude Include="LauncherSling.h" />
+    <ClInclude Include="units.h" />
   </ItemGroup>
 </Project>

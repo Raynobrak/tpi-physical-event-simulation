@@ -12,14 +12,15 @@ void Button::init(ch::AABB clickableZone, unsigned characterSize, std::string te
 }
 
 bool Button::checkForMouseRelease(ch::vec_t mousePos, sf::Event event) {
-	bool leftClick = event.mouseButton.button == sf::Mouse::Left;
+	if (event.mouseButton.button != sf::Mouse::Left)
+		return false;
 
-	if (event.type == sf::Event::MouseButtonPressed && leftClick) {
+	if (event.type == sf::Event::MouseButtonPressed) {
 		if (isHovered(mousePos)) {
 			isClicked_ = true;
 		}
 	}
-	else if (event.type == sf::Event::MouseButtonReleased && leftClick) {
+	else if (event.type == sf::Event::MouseButtonReleased) {
 		if (isHovered(mousePos)) {
 			if (isClicked_) {
 				isClicked_ = false;

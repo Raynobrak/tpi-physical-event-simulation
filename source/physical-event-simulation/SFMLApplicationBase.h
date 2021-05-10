@@ -6,20 +6,18 @@
 #include <string>
 
 struct SFMLApplicationSettings {
-	std::string applicationName = DEFAULT_APPLICATION_NAME;
+	std::string applicationName = "SFML Application";
 	unsigned windowWidth = DEFAULT_WINDOW_WIDTH;
 	unsigned windowHeight = DEFAULT_WINDOW_HEIGHT;
 	float fps = DEFAULT_FPS;
 	float fixedTimeStep = DEFAULT_FIXED_TIME_STEP;
-	sf::Color backgroundColor = DEFAULT_BACKGROUND_COLOR;
+	sf::Color backgroundColor = sf::Color::Black;
 
 private:
-	static constexpr auto DEFAULT_APPLICATION_NAME = "SFML Application";
 	static constexpr unsigned DEFAULT_WINDOW_WIDTH = 400;
 	static constexpr unsigned DEFAULT_WINDOW_HEIGHT = 300;
-	static constexpr float DEFAULT_FPS = 30.f;
+	static constexpr float DEFAULT_FPS = 60.f;
 	static constexpr float DEFAULT_FIXED_TIME_STEP = 0.5f / DEFAULT_FPS;
-	const sf::Color DEFAULT_BACKGROUND_COLOR = sf::Color::Black;
 };
 
 class SFMLApplicationBase {
@@ -31,7 +29,7 @@ protected:
 	sf::Vector2f getMousePosOnWindow() const;
 	sf::Vector2f getWindowSize() const;
 	void exitApplication();
-	void hideWindow();
+	void closeWindow();
 	void showWindow();
 	void drawOnWindow(const sf::Drawable& d, const sf::RenderStates states = sf::RenderStates::Default);
 
@@ -45,5 +43,7 @@ private:
 	sf::Color windowClearColor_;
 	float fixedTimeStep_;
 	float fps_;
+	bool exitApplication_;
+	SFMLApplicationSettings originalSettings_;
 };
 

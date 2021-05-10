@@ -44,11 +44,17 @@ void MainMenuApplication::handleEvent(sf::Event& event) {
 	}
 
 	if (collisionsSimButton_.checkForMouseRelease(getMousePosOnWindow(), event)) {
-		std::cout << "coll sim" << std::endl;
+		closeWindow();
+		CollisionSimulationApp app;
+		app.run();
+		showWindow();
 	}
 
 	if (ballisticSimButton_.checkForMouseRelease(getMousePosOnWindow(), event)) {
-		std::cout << "ballistic sim" << std::endl;
+		closeWindow();
+		BallisticSimulationApp app;
+		app.run();
+		showWindow();
 	}
 
 	if (leaveButton_.checkForMouseRelease(getMousePosOnWindow(), event)) {

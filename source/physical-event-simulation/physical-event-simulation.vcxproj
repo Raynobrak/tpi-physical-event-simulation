@@ -147,22 +147,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BallisticSimulationApp.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CollisionSimulationApp.cpp" />
+    <ClCompile Include="DraggableCircle.cpp" />
     <ClCompile Include="get_default_font.cpp" />
     <ClCompile Include="Label.cpp" />
+    <ClCompile Include="LauncherSling.cpp" />
     <ClCompile Include="MainMenuApplication.cpp" />
     <ClCompile Include="libs\charbrary-2.0.0\single-include\charbrary.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ProjectileLauncher.cpp" />
     <ClCompile Include="SFMLApplicationBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BallisticSimulationApp.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="CollisionSimulationApp.h" />
     <ClInclude Include="color_palette.h" />
+    <ClInclude Include="DraggableCircle.h" />
     <ClInclude Include="get_default_font.h" />
     <ClInclude Include="Label.h" />
+    <ClInclude Include="LauncherSling.h" />
     <ClInclude Include="MainMenuApplication.h" />
     <ClInclude Include="libs\charbrary-2.0.0\single-include\charbrary.h" />
+    <ClInclude Include="ProjectileLauncher.h" />
     <ClInclude Include="SFMLApplicationBase.h" />
+    <ClInclude Include="units.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

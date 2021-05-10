@@ -1,6 +1,8 @@
 #pragma once
 
 #include "SFMLApplicationBase.h"
+#include "CollisionSimulationApp.h"
+#include "BallisticSimulationApp.h"
 
 #include "Label.h"
 #include "Button.h"

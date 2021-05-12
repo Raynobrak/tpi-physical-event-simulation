@@ -37,6 +37,10 @@ bool Button::isHovered(ch::vec_t mousePos) const {
 	return ch::collision::aabb_contains(buttonLabel_.getZone(), mousePos);
 }
 
+void Button::setText(std::string newText) {
+	buttonLabel_.setText(newText);
+}
+
 void Button::setTextColor(sf::Color newColor) {
 	buttonLabel_.setTextColor(newColor);
 }

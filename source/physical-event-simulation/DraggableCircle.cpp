@@ -12,6 +12,10 @@ ch::vec_t DraggableCircle::getCirclePos() const {
 	return circle_.pos;
 }
 
+ch::Circle DraggableCircle::getCircle() const {
+	return circle_;
+}
+
 bool DraggableCircle::updateDragAndDrop(const sf::Event& event, ch::vec_t mousePosOnWindow) {
 	bool leftClick = event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left;
 	bool leftRelease = event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left;
@@ -19,6 +23,7 @@ bool DraggableCircle::updateDragAndDrop(const sf::Event& event, ch::vec_t mouseP
 	if (leftClick) {
 		if (isHovered(mousePosOnWindow)) {
 			isDragging_ = true;
+			dragOrigin_ = mousePosOnWindow - circle_.pos;
 		}
 	}
 	else if(leftRelease) {
@@ -26,7 +31,7 @@ bool DraggableCircle::updateDragAndDrop(const sf::Event& event, ch::vec_t mouseP
 	}
 	else {
 		if (isDragging_) {
-			updatePosition(mousePosOnWindow);
+			updatePosition(mousePosOnWindow - dragOrigin_);
 		}
 	}
 
@@ -60,13 +65,13 @@ void DraggableCircle::updatePosition(ch::vec_t newPos) {
 }
 
 void DraggableCircle::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-	sf::RectangleShape zone;
+	/*sf::RectangleShape zone;
 	zone.setPosition(boundaries_.pos);
 	zone.setSize(boundaries_.size);
 	zone.setFillColor(sf::Color::Transparent);
 	zone.setOutlineColor(sf::Color::White);
 	zone.setOutlineThickness(1.f);
-	target.draw(zone);
+	target.draw(zone);*/
 
 	target.draw(circleShape_);
 }

@@ -15,6 +15,9 @@
     <ClCompile Include="ProjectileLauncher.cpp" />
     <ClCompile Include="DraggableCircle.cpp" />
     <ClCompile Include="LauncherSling.cpp" />
+    <ClCompile Include="utils.cpp" />
+    <ClCompile Include="CircleRigidBody.cpp" />
+    <ClCompile Include="ConfigurableCircle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="charbrary">
@@ -36,6 +39,9 @@
     <ClInclude Include="ProjectileLauncher.h" />
     <ClInclude Include="DraggableCircle.h" />
     <ClInclude Include="LauncherSling.h" />
-    <ClInclude Include="units.h" />
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="utils.h" />
+    <ClInclude Include="CircleRigidBody.h" />
+    <ClInclude Include="ConfigurableCircle.h" />
   </ItemGroup>
 </Project>

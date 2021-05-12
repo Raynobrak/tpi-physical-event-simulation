@@ -17,7 +17,7 @@ private:
 	static constexpr unsigned DEFAULT_WINDOW_WIDTH = 400;
 	static constexpr unsigned DEFAULT_WINDOW_HEIGHT = 300;
 	static constexpr float DEFAULT_FPS = 60.f;
-	static constexpr float DEFAULT_FIXED_TIME_STEP = 0.5f / DEFAULT_FPS;
+	static constexpr float DEFAULT_FIXED_TIME_STEP = 0.01f;
 };
 
 class SFMLApplicationBase {

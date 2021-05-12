@@ -8,7 +8,7 @@ LauncherSling::LauncherSling(ch::AABB zone, const DraggableCircle& circle) : cir
 
 	rectShape_.setPosition(rect_.pos);
 	rectShape_.setSize(rect_.size);
-	rectShape_.setFillColor(color_palette::LIGHT_FOREGROUND);
+	rectShape_.setFillColor(color_palette::DARK_GRAY);
 }
 
 void LauncherSling::updateDragAndDrop(const sf::Event& event, ch::vec_t mousePosOnWindow) {
@@ -21,8 +21,12 @@ ch::vec_t LauncherSling::getProjectileDirection() const {
 	return ch::vec_normalize(circle_.getCirclePos() - rect_.center());
 }
 
-float LauncherSling::getProjectileInitialVelocity() const {
+float LauncherSling::getProjectileInitialVelocityInMetersPerSecond() const {
 	return ch::vec_magnitude(circle_.getCirclePos() - rect_.center()) / PIXELS_PER_METER;
+}
+
+bool LauncherSling::isProjectileHovered(ch::vec_t mousePos) const {
+	return ch::collision::circle_contains(circle_.getCircle(), mousePos);
 }
 
 void LauncherSling::updatePosition(ch::vec_t newPos) {

@@ -438,7 +438,7 @@ namespace ch {
 
 		vec_t rand_point_on_rect(vec_t topLeftCorner, vec_t size) {
 			auto bottomRightCorner = topLeftCorner + size;
-			return rand_vector(topLeftCorner.x, topLeftCorner.y, bottomRightCorner.x, bottomRightCorner.y);
+			return rand_vector(topLeftCorner.x, bottomRightCorner.x, topLeftCorner.y, bottomRightCorner.y);
 		}
 
 		vec_t rand_point_on_rect(vec_t center, float width, float height) {

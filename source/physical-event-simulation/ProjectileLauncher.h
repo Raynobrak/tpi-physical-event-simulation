@@ -4,11 +4,14 @@
 #include "Label.h"
 #include "DraggableCircle.h"
 #include "LauncherSling.h"
+#include "constants.h"
+#include "CircleRigidBody.h"
 
 class ProjectileLauncher : public sf::Drawable {
 public:
 	ProjectileLauncher(ch::AABB zone);
 	void update(const sf::Event& event, ch::vec_t mousePosOnWindow);
+	CircleRigidBody constructCircleRigidBody() const;
 private:
 	void updateInformations();
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

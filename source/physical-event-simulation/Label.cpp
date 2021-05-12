@@ -38,6 +38,14 @@ ch::AABB Label::getZone() const {
 }
 
 void Label::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+	/*sf::RectangleShape shape;
+	shape.setFillColor(sf::Color::Transparent);
+	shape.setOutlineThickness(1.f);
+	shape.setOutlineColor(sf::Color::Red);
+	shape.setSize(textZone_.size);
+	shape.setPosition(textZone_.pos);
+	target.draw(shape);*/
+
 	target.draw(text_);
 }
 

@@ -54,21 +54,22 @@ void CircleRigidBody::update(float dt) {
 
 void CircleRigidBody::collideWith(CircleRigidBody& other) {
 	// Détection de la collision
-	ch::CirclesCollision collisionInformation = ch::collision::circles_collision_info(circle_, other.circle_);
+	ch::CirclesCollision coll = ch::collision::circles_collision_info(circle_, other.circle_);
 
 	// Si il n'y a pas de collision, on ne va pas plus loin.
-	if (collisionInformation.normal == ch::NULL_VEC)
+	if (coll.normal == ch::NULL_VEC)
 		return;
 
 	// Calcul du vecteur de mouvement
-	ch::vec_t movement = collisionInformation.normal * collisionInformation.absoluteDepth / 2.f;
+	ch::vec_t movement = coll.normal * coll.absoluteDepth / 2.f;
 
 	// Application du déplacement aux deux projectiles
 	move(-movement);
 	other.move(movement);
 
 	// Calcul du vecteur d'impulsion
-	ch::vec_t impulse = collisionInformation.normal * (ch::vec_dot_product(2.f * collisionInformation.normal, vel_ - other.vel_) / (inverseMass() + other.inverseMass()));
+	float j = ch::vec_dot_product(2.f * coll.normal, vel_ - other.vel_) / (inverseMass() + other.inverseMass());
+	ch::vec_t impulse = coll.normal * j;
 
 	// Application de l'impulsion aux deux projectiles
 	accelerate(-impulse / mass_);

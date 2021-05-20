@@ -11,25 +11,36 @@ void SFMLApplicationBase::initApplication(SFMLApplicationSettings settings) {
 }
 
 void SFMLApplicationBase::run() {
+	// Chronomètres pour la mise à jour et le rendu de l'application.
 	sf::Clock updateClock;
 	sf::Clock renderClock;
+
 	sf::Event event;
 
 	float timeBetweenFrames = 1.f / fps_;
 
+	// Boucle principale : tant que l'application ne doit pas fermer...
 	while (!exitApplication_) {
+		// Tant que la fenêtre est ouverte...
 		while (window_.isOpen()) {
+			// Si le temps écoulé depuis la dernière mise à jour dépasse le timestep...
 			if (updateClock.getElapsedTime().asSeconds() >= fixedTimeStep_) {
+				// Gestion des événements
 				while (window_.pollEvent(event)) {
 					handleEvent(event);
 				}
 
 				updateClock.restart();
+
+				// Mise à jour de l'application
 				update(fixedTimeStep_);
 			}
 
+			// Si le temps écoulé depuis le dernier affichage dépasse le temps entre chaque frame...
 			if (renderClock.getElapsedTime().asSeconds() >= timeBetweenFrames) {
 				renderClock.restart();
+
+				// Affichage
 				render();
 			}
 		}

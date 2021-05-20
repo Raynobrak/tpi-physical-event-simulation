@@ -76,7 +76,7 @@ void CollisionSimulationApp::update(float dt) {
 
 		for (size_t i = 0; i < circleRigidBodies_.size(); ++i) {
 			auto& first = circleRigidBodies_[i];
-			for (size_t j = i; j < circleRigidBodies_.size(); ++j) {
+			for (size_t j = i + 1; j < circleRigidBodies_.size(); ++j) {
 				auto& second = circleRigidBodies_[j];
 
 				first.collideWith(second);

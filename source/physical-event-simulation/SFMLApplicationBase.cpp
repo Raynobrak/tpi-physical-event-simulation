@@ -1,7 +1,7 @@
 #include "SFMLApplicationBase.h"
 
 void SFMLApplicationBase::initApplication(SFMLApplicationSettings settings) {
-	window_.create({ settings.windowWidth, settings.windowHeight }, settings.applicationName);
+	window_.create({ settings.windowWidth, settings.windowHeight }, settings.applicationName, sf::Style::Titlebar | sf::Style::Close);
 
 	windowClearColor_ = settings.backgroundColor;
 	fixedTimeStep_ = settings.fixedTimeStep;

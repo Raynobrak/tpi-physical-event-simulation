@@ -75,8 +75,11 @@ void CollisionSimulationApp::update(float dt) {
 		//std::cout << energy << std::endl;
 
 		for (size_t i = 0; i < circleRigidBodies_.size(); ++i) {
+			auto& first = circleRigidBodies_[i];
 			for (size_t j = i; j < circleRigidBodies_.size(); ++j) {
-				circleRigidBodies_[i].collideWith(circleRigidBodies_[j]);
+				auto& second = circleRigidBodies_[j];
+
+				first.collideWith(second);
 			}
 		}
 	}

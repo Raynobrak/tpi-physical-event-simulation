@@ -12,13 +12,13 @@ public:
 	void setFillColor(sf::Color newColor);
 	void setOutlineColor(sf::Color newColor);
 protected:
+	ch::Circle circle_;
+	ch::AABB boundaries_;
 private:
 	bool isHovered(ch::vec_t mousePos) const;
 	void updatePosition(ch::vec_t newPos);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 private:
-	ch::AABB boundaries_;
-	ch::Circle circle_;
 	sf::CircleShape circleShape_;
 
 	bool lockedHorizontally_;

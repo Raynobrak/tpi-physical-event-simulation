@@ -2,7 +2,7 @@
 
 constexpr float SLINGSHOT_HANDLE_WIDTH = 20.f;
 
-LauncherSling::LauncherSling(ch::AABB zone, const DraggableCircle& circle) : circle_(circle), zone_(zone) {
+LauncherSling::LauncherSling(ch::AABB zone, const DraggableCircle& circle, float pixelsPerMeter) : circle_(circle), zone_(zone), pixelsPerMeter_(pixelsPerMeter) {
 	rect_.size = { SLINGSHOT_HANDLE_WIDTH, SLINGSHOT_HANDLE_WIDTH };
 	rect_.pos = zone.center() - rect_.size / 2.f;
 
@@ -22,7 +22,7 @@ ch::vec_t LauncherSling::getProjectileDirection() const {
 }
 
 float LauncherSling::getProjectileInitialVelocityInMetersPerSecond() const {
-	return ch::vec_magnitude(circle_.getCirclePos() - rect_.center()) / PIXELS_PER_METER;
+	return ch::vec_magnitude(circle_.getCirclePos() - rect_.center()) / pixelsPerMeter_;
 }
 
 bool LauncherSling::isProjectileHovered(ch::vec_t mousePos) const {

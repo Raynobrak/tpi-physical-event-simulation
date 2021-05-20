@@ -8,7 +8,7 @@
 
 class LauncherSling : public sf::Drawable {
 public:
-	LauncherSling(ch::AABB zone, const DraggableCircle& circle);
+	LauncherSling(ch::AABB zone, const DraggableCircle& circle, float pixelsPerMeter);
 	void updateDragAndDrop(const sf::Event& event, ch::vec_t mousePosOnWindow);
 	ch::vec_t getProjectileDirection() const;
 	float getProjectileInitialVelocityInMetersPerSecond() const;
@@ -21,5 +21,6 @@ private:
 	ch::AABB rect_;
 	const DraggableCircle& circle_;
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	float pixelsPerMeter_;
 };
 

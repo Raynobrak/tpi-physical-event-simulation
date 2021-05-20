@@ -6,17 +6,22 @@ constexpr float SIMULATION_WINDOW_WIDTH = 800.f;
 constexpr float LAUNCHER_WIDTH = 300.f;
 constexpr float OBJECTS_BOUNDARIES_WIDTH = SIMULATION_WINDOW_WIDTH - LAUNCHER_WIDTH;
 
-constexpr float BUTTON_MARGIN = 20.f;
+constexpr float BUTTON_TOP_MARGIN = 20.f;
 constexpr float BUTTON_WIDTH = 80.f;
 constexpr float BUTTON_HEIGHT = 40.f;
 
+constexpr float SCALE_MARGIN_BOTTOM = 30.f;
+constexpr float SCALE_X_POS = SIMULATION_WINDOW_WIDTH / 2.f;
+constexpr float SCALE_Y_POS = SIMULATION_WINDOW_HEIGHT - SCALE_MARGIN_BOTTOM;
+
 CollisionSimulationApp::CollisionSimulationApp() : 
-	launcher_(ch::AABB({ 0.f,0.f }, { LAUNCHER_WIDTH, SIMULATION_WINDOW_HEIGHT })),
-	launchSimulationButton_(ch::AABB(LAUNCHER_WIDTH + BUTTON_MARGIN, BUTTON_MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT), 20u, "---"),
-	simulationRunning_(false)
+	launcher_(ch::AABB({ 0.f,0.f }, { LAUNCHER_WIDTH, SIMULATION_WINDOW_HEIGHT }), PIXELS_PER_METER_IN_COLLISION_SIMULATION, OBJECTS_RADIUS_IN_METERS_IN_COLLISION_SIMULATION),
+	launchSimulationButton_(ch::AABB(SIMULATION_WINDOW_WIDTH / 2.f - BUTTON_WIDTH / 2.f, BUTTON_TOP_MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT), TINY_TEXT_SIZE, "---"),
+	simulationRunning_(false),
+	scale_({ SCALE_X_POS, SCALE_Y_POS }, PIXELS_PER_METER_IN_COLLISION_SIMULATION)
 {
 	SFMLApplicationSettings settings;
-	settings.applicationName = "Expérience de collisions élastiques";
+	settings.applicationName = "Expérience de collisions élastiques - Lucas Charbonnier";
 	settings.windowWidth = SIMULATION_WINDOW_WIDTH;
 	settings.windowHeight = SIMULATION_WINDOW_HEIGHT;
 	settings.backgroundColor = color_palette::VERY_DARK_GRAY;
@@ -26,8 +31,6 @@ CollisionSimulationApp::CollisionSimulationApp() :
 	updateLaunchButtonText();
 
 	spawnRandomCircles();
-
-	//configurableCircles_.push_back(ConfigurableCircle(ch::Circle({ 400.f, 200.f }, P_OBJECTS_RADIUS), editableZone));
 }
 
 void CollisionSimulationApp::handleEvent(sf::Event& event) {
@@ -50,10 +53,7 @@ void CollisionSimulationApp::handleEvent(sf::Event& event) {
 		switchSimulationMode();
 	}
 
-	if (simulationRunning_) {
-		
-	}
-	else {
+	if (!simulationRunning_) {
 		launcher_.update(event, mouse);
 
 		for (auto& configurableCircle : configurableCircles_) {
@@ -95,10 +95,11 @@ void CollisionSimulationApp::customRender() {
 		drawOnWindow(launcher_);
 	}
 
+	drawOnWindow(scale_);
 }
 
 void CollisionSimulationApp::updateLaunchButtonText() {
-	launchSimulationButton_.setText(simulationRunning_ ? "Stop" : "Lancer");
+	launchSimulationButton_.setText(simulationRunning_ ? LAUNCHER_STOP_BUTTON_TEXT : LAUNCHER_LAUNCH_BUTTON_TEXT);
 }
 
 void CollisionSimulationApp::switchSimulationMode() {
@@ -110,20 +111,23 @@ void CollisionSimulationApp::switchSimulationMode() {
 		for (const auto& c : configurableCircles_) {
 			circleRigidBodies_.push_back(c.constructCircleRigidBody());
 		}
+
+		scale_.makeSemiTransparent();
 	}
 	else {
 		circleRigidBodies_.clear();
+		scale_.makeOpaque();
 	}
 }
 
 void CollisionSimulationApp::spawnRandomCircles() {
-	ch::AABB editableZone({ LAUNCHER_WIDTH + P_OBJECTS_RADIUS, 0.f }, { SIMULATION_WINDOW_WIDTH - LAUNCHER_WIDTH - P_OBJECTS_RADIUS, SIMULATION_WINDOW_HEIGHT });
+	ch::AABB editableZone({ LAUNCHER_WIDTH + OBJECTS_RADIUS_IN_METERS_IN_COLLISION_SIMULATION * PIXELS_PER_METER_IN_COLLISION_SIMULATION, 0.f }, { SIMULATION_WINDOW_WIDTH - LAUNCHER_WIDTH - OBJECTS_RADIUS_IN_METERS_IN_COLLISION_SIMULATION * PIXELS_PER_METER_IN_COLLISION_SIMULATION, SIMULATION_WINDOW_HEIGHT });
 
 	configurableCircles_.clear();
 
 	while (configurableCircles_.size() < OBJECTS_COUNT) {
 		auto randomPosition = ch::rand::rand_point_on_rect(editableZone.pos, editableZone.size);
-		ch::Circle newObject(randomPosition, P_OBJECTS_RADIUS);
+		ch::Circle newObject(randomPosition, OBJECTS_RADIUS_IN_METERS_IN_COLLISION_SIMULATION * PIXELS_PER_METER_IN_COLLISION_SIMULATION);
 
 		if (ch::collision::aabb_contains(editableZone, newObject)) {
 			bool collidesWithAny = false;

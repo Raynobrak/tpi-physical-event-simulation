@@ -15,7 +15,7 @@ void VectorArrow::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	sf::VertexArray vertices(sf::PrimitiveType::Lines);
 
 	constexpr float ARROW_FEATHER_PROPORTION_TO_LENGTH = 0.2f;
-	constexpr float ARROW_FEATHERS_ANGLE = 20.f;
+	constexpr float ARROW_FEATHERS_ANGLE = 40.f;
 
 	auto start = origin_;
 	auto end = origin_ + length_;
@@ -30,5 +30,5 @@ void VectorArrow::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	vertices.append(sf::Vertex(end, color_));
 	vertices.append(sf::Vertex(end + ch::vec_rotate(towardsStart, -ARROW_FEATHERS_ANGLE) * ARROW_FEATHER_PROPORTION_TO_LENGTH, color_));
 
-	target.draw(vertices);
+	target.draw(vertices, states);
 }

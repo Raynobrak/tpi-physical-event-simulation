@@ -18,6 +18,11 @@
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="CircleRigidBody.cpp" />
     <ClCompile Include="ConfigurableCircle.cpp" />
+    <ClCompile Include="ScaleIcon.cpp" />
+    <ClCompile Include="TargetSlider.cpp" />
+    <ClCompile Include="FadingText.cpp" />
+    <ClCompile Include="WindPicker.cpp" />
+    <ClCompile Include="VectorArrow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="charbrary">
@@ -43,5 +48,10 @@
     <ClInclude Include="utils.h" />
     <ClInclude Include="CircleRigidBody.h" />
     <ClInclude Include="ConfigurableCircle.h" />
+    <ClInclude Include="ScaleIcon.h" />
+    <ClInclude Include="TargetSlider.h" />
+    <ClInclude Include="FadingText.h" />
+    <ClInclude Include="WindPicker.h" />
+    <ClInclude Include="VectorArrow.h" />
   </ItemGroup>
 </Project>

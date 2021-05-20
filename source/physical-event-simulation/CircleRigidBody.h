@@ -5,6 +5,7 @@
 #include "constants.h"
 #include "color_palette.h"
 #include <deque>
+#include "Label.h"
 
 class CircleRigidBody : public sf::Drawable {
 public:
@@ -14,7 +15,10 @@ public:
 	void move(ch::vec_t translationVector);	
 	void update(float dt);
 	void collideWith(CircleRigidBody& other);
+	ch::Circle getCircle() const;
 	float computeKineticEnergy() const;
+	float getMass() const;
+	ch::vec_t getVelocity() const;
 private:
 	float inverseMass() const;
 	void savePosition();
@@ -26,5 +30,8 @@ private:
 
 	std::deque<ch::vec_t> trace_;
 	float timeSinceLastTraceSave_;
+	Label massLabel_;
+
+	sf::CircleShape shape_;
 };
 

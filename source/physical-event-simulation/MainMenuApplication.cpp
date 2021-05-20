@@ -10,22 +10,22 @@ MainMenuApplication::MainMenuApplication() {
 	auto settings = SFMLApplicationSettings();
 	settings.windowWidth = MAIN_MENU_WINDOW_WIDTH;
 	settings.windowHeight = MAIN_MENU_WINDOW_HEIGHT;
-	settings.applicationName = "Menu principal - Physical Event Simulation";
+	settings.applicationName = "Menu principal - Physical Event Simulation - Lucas Charbonnier";
 	settings.fps = 60.f;
 	settings.fixedTimeStep = 1.f / 30.f;
 	settings.backgroundColor = color_palette::VERY_DARK_GRAY;
 
 	initApplication(settings);
 
-	menuTitle_.init({ 0.f,0.f,MAIN_MENU_WINDOW_WIDTH,100.f }, 60u, "Physical Event Simulation");
+	menuTitle_.init({ 0.f,0.f,MAIN_MENU_WINDOW_WIDTH,100.f }, BIG_TEXT_SIZE, "Physical Event Simulation");
 
-	collisionsSimButton_.init({ BUTTONS_MARGINS,120,BUTTONS_WIDTH,BUTTONS_HEIGHT }, 48u, "Collisions");
+	collisionsSimButton_.init({ BUTTONS_MARGINS,120,BUTTONS_WIDTH,BUTTONS_HEIGHT }, MEDIUM_TEXT_SIZE, "Collisions");
 	collisionsSimButton_.setTextColor(color_palette::DARK_TEXT);
 
-	ballisticSimButton_.init({ BUTTONS_MARGINS,210,BUTTONS_WIDTH,BUTTONS_HEIGHT }, 48u, "Balistique");
+	ballisticSimButton_.init({ BUTTONS_MARGINS,210,BUTTONS_WIDTH,BUTTONS_HEIGHT }, MEDIUM_TEXT_SIZE, "Balistique");
 	ballisticSimButton_.setTextColor(color_palette::DARK_TEXT);
 
-	leaveButton_.init({ BUTTONS_MARGINS + 60.f,MAIN_MENU_WINDOW_HEIGHT - BUTTONS_HEIGHT - 50.f,BUTTONS_WIDTH - 120.f,BUTTONS_HEIGHT }, 36u, "Quitter");
+	leaveButton_.init({ BUTTONS_MARGINS + 60.f,MAIN_MENU_WINDOW_HEIGHT - BUTTONS_HEIGHT - 50.f,BUTTONS_WIDTH - 120.f,BUTTONS_HEIGHT }, SMALL_TEXT_SIZE, "Quitter");
 	leaveButton_.setTextColor(color_palette::DARK_TEXT);
 }
 

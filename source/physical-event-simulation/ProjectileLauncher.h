@@ -9,7 +9,7 @@
 
 class ProjectileLauncher : public sf::Drawable {
 public:
-	ProjectileLauncher(ch::AABB zone);
+	ProjectileLauncher(ch::AABB zone, float pixelsPerMeter, float projectileRadiusInMeters);
 	void update(const sf::Event& event, ch::vec_t mousePosOnWindow);
 	CircleRigidBody constructCircleRigidBody() const;
 private:
@@ -23,5 +23,6 @@ private:
 	DraggableCircle projectile_;
 	LauncherSling slingshot_;
 	float projectileMass_;
+	float pixelsPerMeter_;
 };
 

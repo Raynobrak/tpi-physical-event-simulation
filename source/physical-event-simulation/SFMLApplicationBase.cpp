@@ -19,11 +19,11 @@ void SFMLApplicationBase::run() {
 
 	while (!exitApplication_) {
 		while (window_.isOpen()) {
-			while (window_.pollEvent(event)) {
-				handleEvent(event);
-			}
-
 			if (updateClock.getElapsedTime().asSeconds() >= fixedTimeStep_) {
+				while (window_.pollEvent(event)) {
+					handleEvent(event);
+				}
+
 				updateClock.restart();
 				update(fixedTimeStep_);
 			}

@@ -8,6 +8,7 @@
 #include "CircleRigidBody.h"
 #include "ConfigurableCircle.h"
 #include "utils.h"
+#include "ScaleIcon.h"
 
 class CollisionSimulationApp : public SFMLApplicationBase {
 public:
@@ -27,5 +28,7 @@ private:
 
 	Button launchSimulationButton_;
 	bool simulationRunning_;
+
+	ScaleIcon scale_;
 };
 

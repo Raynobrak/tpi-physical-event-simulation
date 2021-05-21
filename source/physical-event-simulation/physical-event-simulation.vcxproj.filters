@@ -53,5 +53,6 @@
     <ClInclude Include="FadingText.h" />
     <ClInclude Include="WindPicker.h" />
     <ClInclude Include="VectorArrow.h" />
+    <ClInclude Include="SFMLApplicationSettings.h" />
   </ItemGroup>
 </Project>

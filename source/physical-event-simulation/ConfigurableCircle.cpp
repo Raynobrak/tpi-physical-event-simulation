@@ -1,10 +1,10 @@
 #include "ConfigurableCircle.h"
 #include "utils.h"
 
-ConfigurableCircle::ConfigurableCircle(ch::Circle circle, ch::AABB zone, float defaultMass) : 
-	DraggableCircle(circle, zone, false), 
+ConfigurableCircle::ConfigurableCircle(ch::Circle circle, ch::AABB boundaries, float defaultMass) : 
+	DraggableCircle(circle, boundaries, false),
 	mass_(defaultMass),
-	massLabel_(ch::collision::enclosingAABB(circle), TINY_TEXT_SIZE, "---")
+	massLabel_(ch::collision::enclosingAABB(circle), TINY_TEXT, "---")
 {
 	massLabel_.setTextColor(color_palette::DARK_TEXT);
 }

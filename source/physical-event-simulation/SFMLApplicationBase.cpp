@@ -72,12 +72,8 @@ void SFMLApplicationBase::drawOnWindow(const sf::Drawable& d, const sf::RenderSt
 	window_.draw(d, states);
 }
 
-void SFMLApplicationBase::handleEvent(sf::Event& event) {}
-
 void SFMLApplicationBase::render() {
 	window_.clear(windowClearColor_);
 	customRender();
 	window_.display();
 }
-
-void SFMLApplicationBase::customRender() {}

@@ -2,16 +2,16 @@
 #include "constants.h"
 
 WindPicker::WindPicker(ch::vec_t center) : 
-	clickableZone_(center, WINDPICKER_RADIUS),
-	selectedPoint_(center - ch::vec_t(WINDPICKER_RADIUS, 0.f)),
+	clickableZone_(center, WINDPICKER_RADIUS_PX),
+	selectedPoint_(center - ch::vec_t(WINDPICKER_RADIUS_PX, 0.f)),
 	isDragging_(false)
 {}
 
 ch::vec_t WindPicker::computeWindIntensityAndDirection() const {
 	auto delta = selectedPoint_ - clickableZone_.pos;
 	float dist = ch::vec_magnitude(delta);
-	float percentage = dist / WINDPICKER_RADIUS;
-	float value = percentage * WINDPICKER_MAX_WIND_INTENSITY;
+	float percentage = dist / WINDPICKER_RADIUS_PX;
+	float value = percentage * MAX_WIND_SPEED;
 	auto dir = ch::vec_normalize(delta);
 	return value * dir;
 }

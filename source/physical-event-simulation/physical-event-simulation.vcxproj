@@ -190,6 +190,7 @@
     <ClInclude Include="ScaleIcon.h" />
     <ClInclude Include="SFMLApplicationBase.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="SFMLApplicationSettings.h" />
     <ClInclude Include="TargetSlider.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="VectorArrow.h" />

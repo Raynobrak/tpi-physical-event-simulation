@@ -1,7 +1,7 @@
 #include "BallisticSimulationApp.h"
 
-constexpr float SIMULATION_WINDOW_HEIGHT = 500.f;
 constexpr float SIMULATION_WINDOW_WIDTH = 1200.f;
+constexpr float SIMULATION_WINDOW_HEIGHT = 500.f;
 
 constexpr float LAUNCHER_WIDTH = 300.f;
 
@@ -18,36 +18,45 @@ constexpr float TARGET_RIGHT_MARGIN = 30.f;
 constexpr float WINDPICKER_TOP_MARGIN = 30.f;
 constexpr float WINDPICKER_RIGHT_MARGIN = 80.f;
 constexpr float WINDPICKER_TEXT_VERTICAL_OFFSET = 20.f;
-constexpr float WINDPICKER_X = SIMULATION_WINDOW_WIDTH - WINDPICKER_RIGHT_MARGIN - WINDPICKER_RADIUS - TARGET_RIGHT_MARGIN;
-constexpr float WINDPICKER_Y = WINDPICKER_TOP_MARGIN + WINDPICKER_RADIUS;
+constexpr float WINDPICKER_X = SIMULATION_WINDOW_WIDTH - WINDPICKER_RIGHT_MARGIN - WINDPICKER_RADIUS_PX - TARGET_RIGHT_MARGIN;
+constexpr float WINDPICKER_Y = WINDPICKER_TOP_MARGIN + WINDPICKER_RADIUS_PX;
+
+const std::string TARGET_HIT_TEXT = "Cible atteinte !";
+const std::string TARGET_MISSED_TEXT = "Raté...";
+const std::string APPLICATION_TITLE = "Expérience de balistique - Lucas Charbonnier";
+
+constexpr float RHO = 1.225f; // Densité de l'air, en kg/m^3, au niveau de la mer, à 15°C
+constexpr float PI = ch::FLT_PI;
+constexpr float SPHERE_DRAG_COEFFICIENT = 0.47f;
 
 BallisticSimulationApp::BallisticSimulationApp() :
-	launcher_(ch::AABB({ 0.f,0.f }, { LAUNCHER_WIDTH, SIMULATION_WINDOW_HEIGHT }), PIXELS_PER_METER_IN_BALLISTIC_SIMULATION, OBJECTS_RADIUS_IN_METERS_IN_BALLISTIC_SIMULATION),
-	launchSimulationButton_(ch::AABB(SIMULATION_WINDOW_WIDTH / 2.f - BUTTON_WIDTH / 2.f, BUTTON_TOP_MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT), TINY_TEXT_SIZE, "---"),
+	launcher_(ch::AABB({ 0.f,0.f }, { LAUNCHER_WIDTH, SIMULATION_WINDOW_HEIGHT }), PX_PER_METER_BALLISTIC, OBJECTS_RADIUS_BALLISTIC),
+	launchSimulationButton_(ch::AABB(SIMULATION_WINDOW_WIDTH / 2.f - BUTTON_WIDTH / 2.f, BUTTON_TOP_MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT), TINY_TEXT, "---"),
 	simulationRunning_(false),
-	scale_({ SCALE_X_POS, SCALE_Y_POS }, PIXELS_PER_METER_IN_BALLISTIC_SIMULATION),
-	target_(SIMULATION_WINDOW_WIDTH - TARGET_RIGHT_MARGIN, SIMULATION_WINDOW_HEIGHT, TARGET_RADIUS_IN_METERS * PIXELS_PER_METER_IN_BALLISTIC_SIMULATION),
+	scale_({ SCALE_X_POS, SCALE_Y_POS }, PX_PER_METER_BALLISTIC),
+	target_(SIMULATION_WINDOW_WIDTH - TARGET_RIGHT_MARGIN, SIMULATION_WINDOW_HEIGHT, TARGET_RAD * PX_PER_METER_BALLISTIC),
 	windPicker_(ch::vec_t(WINDPICKER_X, WINDPICKER_Y))
 {
 	SFMLApplicationSettings settings;
-	settings.applicationName = "Expérience de balistique - Lucas Charbonnier";
+	settings.applicationName = APPLICATION_TITLE;
 	settings.windowWidth = SIMULATION_WINDOW_WIDTH;
 	settings.windowHeight = SIMULATION_WINDOW_HEIGHT;
 	settings.backgroundColor = color_palette::VERY_DARK_GRAY;
 	initApplication(settings);
 
-	auto windPickerZone = ch::collision::enclosingAABB(ch::Circle({ WINDPICKER_X, WINDPICKER_Y }, WINDPICKER_RADIUS));
-	windIntensityLabel_.init(ch::AABB(windPickerZone.pos + ch::vec_t(0.f, WINDPICKER_RADIUS + WINDPICKER_TEXT_VERTICAL_OFFSET), windPickerZone.size), TINY_TEXT_SIZE, "-");
+	ch::AABB windPickerZone = ch::collision::enclosingAABB(ch::Circle({ WINDPICKER_X, WINDPICKER_Y }, WINDPICKER_RADIUS_PX));
+	windIntensityLabel_.init(ch::AABB(windPickerZone.pos + ch::vec_t(0.f, WINDPICKER_RADIUS_PX + WINDPICKER_TEXT_VERTICAL_OFFSET), windPickerZone.size), TINY_TEXT, "-");
 
 	launchSimulationButton_.setTextColor(color_palette::DARK_TEXT);
 	updateLaunchButtonText();
 }
 
-void BallisticSimulationApp::handleEvent(sf::Event& event) {
+void BallisticSimulationApp::handleEvent(const sf::Event& event) {
 	switch (event.type) {
 	case sf::Event::KeyPressed:
 		switch (event.key.code) {
-
+		case sf::Keyboard::Space:
+			switchSimulationMode();
 		}
 		break;
 	case sf::Event::Closed:
@@ -55,17 +64,19 @@ void BallisticSimulationApp::handleEvent(sf::Event& event) {
 		break;
 	}
 
-	auto mouse = getMousePosOnWindow();
+	updateWidgets(event, getMousePosOnWindow());
+}
 
-	launcher_.update(event, mouse);
+void BallisticSimulationApp::updateWidgets(const sf::Event& event, ch::vec_t mousePos) {
+	launcher_.update(event, mousePos);
 
-	if (launchSimulationButton_.checkForMouseRelease(mouse, event)) {
+	if (launchSimulationButton_.checkForMouseRelease(mousePos, event)) {
 		switchSimulationMode();
 	}
 
 	if (!simulationRunning_) {
-		target_.updateDragAndDrop(event, mouse);
-		windPicker_.update(event, mouse);
+		target_.updateDragAndDrop(event, mousePos);
+		windPicker_.update(event, mousePos);
 	}
 }
 
@@ -82,28 +93,27 @@ void BallisticSimulationApp::update(float dt) {
 			switchSimulationMode();
 			spawnFadingText(TARGET_HIT_TEXT);
 		}
-
-		if (projectileIsOutOfBounds()) {
+		else if (projectileIsOutOfBounds()) {
 			switchSimulationMode();
 			spawnFadingText(TARGET_MISSED_TEXT);
 		}
 
-		projectile_->accelerate(ch::vec_t(0.f, GRAVITY) * PIXELS_PER_METER_IN_BALLISTIC_SIMULATION * dt);
+		projectile_->accelerate(ch::vec_t(0.f, GRAVITY) * PX_PER_METER_BALLISTIC * dt);
 		applyDragForce(dt);
 		projectile_->update(dt);
 	}
 }
 
 void BallisticSimulationApp::applyDragForce(float dt) {
-	auto fluidVelocity = windPicker_.computeWindIntensityAndDirection();
+	ch::vec_t fluidVelocity = windPicker_.computeWindIntensityAndDirection();
 
-	auto projectileVelocity = projectile_->getVelocity() / PIXELS_PER_METER_IN_BALLISTIC_SIMULATION;
-	auto mass = projectile_->getMass();
-	auto radius = OBJECTS_RADIUS_IN_METERS_IN_BALLISTIC_SIMULATION;
+	ch::vec_t projectileVelocity = projectile_->getVelocity() / PX_PER_METER_BALLISTIC;
+	float mass = projectile_->getMass();
+	float radius = OBJECTS_RADIUS_BALLISTIC;
 
 	float relativeVelocity = ch::vec_magnitude(fluidVelocity - projectileVelocity);
 
-	auto acceleration = (RHO * PI * radius * radius * SPHERE_DRAG_COEFFICIENT * relativeVelocity * (fluidVelocity - projectileVelocity)) / (2.f * mass);
+	ch::vec_t acceleration = (RHO * PI * radius * radius * SPHERE_DRAG_COEFFICIENT * relativeVelocity * (fluidVelocity - projectileVelocity)) / (2.f * mass);
 	projectile_->accelerate(acceleration * dt);
 }
 
@@ -146,7 +156,7 @@ void BallisticSimulationApp::switchSimulationMode() {
 }
 
 void BallisticSimulationApp::updateLaunchButtonText() {
-	launchSimulationButton_.setText(simulationRunning_ ? LAUNCHER_STOP_BUTTON_TEXT : LAUNCHER_LAUNCH_BUTTON_TEXT);
+	launchSimulationButton_.setText(simulationRunning_ ? STOP_BUTTON_TEXT : LAUNCH_BUTTON_TEXT);
 }
 
 bool BallisticSimulationApp::projectileIsOutOfBounds() const {

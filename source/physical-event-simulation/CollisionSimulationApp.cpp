@@ -14,14 +14,16 @@ constexpr float SCALE_MARGIN_BOTTOM = 30.f;
 constexpr float SCALE_X_POS = SIMULATION_WINDOW_WIDTH / 2.f;
 constexpr float SCALE_Y_POS = SIMULATION_WINDOW_HEIGHT - SCALE_MARGIN_BOTTOM;
 
+const std::string APPLICATION_TITLE = "Expérience de collisions élastiques - Lucas Charbonnier";
+
 CollisionSimulationApp::CollisionSimulationApp() : 
-	launcher_(ch::AABB({ 0.f,0.f }, { LAUNCHER_WIDTH, SIMULATION_WINDOW_HEIGHT }), PIXELS_PER_METER_IN_COLLISION_SIMULATION, OBJECTS_RADIUS_IN_METERS_IN_COLLISION_SIMULATION),
-	launchSimulationButton_(ch::AABB(SIMULATION_WINDOW_WIDTH / 2.f - BUTTON_WIDTH / 2.f, BUTTON_TOP_MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT), TINY_TEXT_SIZE, "---"),
+	launcher_(ch::AABB({ 0.f,0.f }, { LAUNCHER_WIDTH, SIMULATION_WINDOW_HEIGHT }), PX_PER_METER_COLLISIONS, OBJECTS_RADIUS_COLLISIONS),
+	launchSimulationButton_(ch::AABB(SIMULATION_WINDOW_WIDTH / 2.f - BUTTON_WIDTH / 2.f, BUTTON_TOP_MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT), TINY_TEXT, "---"),
 	simulationRunning_(false),
-	scale_({ SCALE_X_POS, SCALE_Y_POS }, PIXELS_PER_METER_IN_COLLISION_SIMULATION)
+	scale_({ SCALE_X_POS, SCALE_Y_POS }, PX_PER_METER_COLLISIONS)
 {
 	SFMLApplicationSettings settings;
-	settings.applicationName = "Expérience de collisions élastiques - Lucas Charbonnier";
+	settings.applicationName = APPLICATION_TITLE;
 	settings.windowWidth = SIMULATION_WINDOW_WIDTH;
 	settings.windowHeight = SIMULATION_WINDOW_HEIGHT;
 	settings.backgroundColor = color_palette::VERY_DARK_GRAY;
@@ -33,11 +35,12 @@ CollisionSimulationApp::CollisionSimulationApp() :
 	spawnRandomCircles();
 }
 
-void CollisionSimulationApp::handleEvent(sf::Event& event) {
+void CollisionSimulationApp::handleEvent(const sf::Event& event) {
 	switch (event.type) {
 	case sf::Event::KeyPressed:
 		switch (event.key.code) {
-
+		case sf::Keyboard::Space:
+			switchSimulationMode();
 		}
 		break;
 	case sf::Event::Closed:
@@ -45,19 +48,20 @@ void CollisionSimulationApp::handleEvent(sf::Event& event) {
 		break;
 	}
 
-	auto mouse = getMousePosOnWindow();
+	updateWidgets(event, getMousePosOnWindow());
+}
 
-	
-
-	if (launchSimulationButton_.checkForMouseRelease(mouse, event)) {
+void CollisionSimulationApp::updateWidgets(const sf::Event& event, ch::vec_t mousePos)
+{
+	if (launchSimulationButton_.checkForMouseRelease(mousePos, event)) {
 		switchSimulationMode();
 	}
 
 	if (!simulationRunning_) {
-		launcher_.update(event, mouse);
+		launcher_.update(event, mousePos);
 
 		for (auto& configurableCircle : configurableCircles_) {
-			if (configurableCircle.update(event, mouse)) {
+			if (configurableCircle.update(event, mousePos)) {
 				break;
 			}
 		}
@@ -102,7 +106,7 @@ void CollisionSimulationApp::customRender() {
 }
 
 void CollisionSimulationApp::updateLaunchButtonText() {
-	launchSimulationButton_.setText(simulationRunning_ ? LAUNCHER_STOP_BUTTON_TEXT : LAUNCHER_LAUNCH_BUTTON_TEXT);
+	launchSimulationButton_.setText(simulationRunning_ ? STOP_BUTTON_TEXT : LAUNCH_BUTTON_TEXT);
 }
 
 void CollisionSimulationApp::switchSimulationMode() {
@@ -124,13 +128,13 @@ void CollisionSimulationApp::switchSimulationMode() {
 }
 
 void CollisionSimulationApp::spawnRandomCircles() {
-	ch::AABB editableZone({ LAUNCHER_WIDTH + OBJECTS_RADIUS_IN_METERS_IN_COLLISION_SIMULATION * PIXELS_PER_METER_IN_COLLISION_SIMULATION, 0.f }, { SIMULATION_WINDOW_WIDTH - LAUNCHER_WIDTH - OBJECTS_RADIUS_IN_METERS_IN_COLLISION_SIMULATION * PIXELS_PER_METER_IN_COLLISION_SIMULATION, SIMULATION_WINDOW_HEIGHT });
+	ch::AABB editableZone({ LAUNCHER_WIDTH + OBJECTS_RADIUS_COLLISIONS * PX_PER_METER_COLLISIONS, 0.f }, { SIMULATION_WINDOW_WIDTH - LAUNCHER_WIDTH - OBJECTS_RADIUS_COLLISIONS * PX_PER_METER_COLLISIONS, SIMULATION_WINDOW_HEIGHT });
 
 	configurableCircles_.clear();
 
 	while (configurableCircles_.size() < OBJECTS_COUNT) {
 		auto randomPosition = ch::rand::rand_point_on_rect(editableZone.pos, editableZone.size);
-		ch::Circle newObject(randomPosition, OBJECTS_RADIUS_IN_METERS_IN_COLLISION_SIMULATION * PIXELS_PER_METER_IN_COLLISION_SIMULATION);
+		ch::Circle newObject(randomPosition, OBJECTS_RADIUS_COLLISIONS * PX_PER_METER_COLLISIONS);
 
 		if (ch::collision::aabb_contains(editableZone, newObject)) {
 			bool collidesWithAny = false;

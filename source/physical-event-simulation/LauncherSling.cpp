@@ -2,7 +2,7 @@
 
 constexpr float SLINGSHOT_HANDLE_WIDTH = 20.f;
 
-LauncherSling::LauncherSling(ch::AABB zone, const DraggableCircle& circle, float pixelsPerMeter) : circle_(circle), zone_(zone), pixelsPerMeter_(pixelsPerMeter) {
+LauncherSling::LauncherSling(ch::AABB zone, const DraggableCircle& circle, float pixelsPerMeter) : projectile_(circle), boundaries_(zone), pixelsPerMeter_(pixelsPerMeter) {
 	rect_.size = { SLINGSHOT_HANDLE_WIDTH, SLINGSHOT_HANDLE_WIDTH };
 	rect_.pos = zone.center() - rect_.size / 2.f;
 
@@ -18,19 +18,19 @@ void LauncherSling::updateDragAndDrop(const sf::Event& event, ch::vec_t mousePos
 }
 
 ch::vec_t LauncherSling::getProjectileDirection() const {
-	return ch::vec_normalize(circle_.getCirclePos() - rect_.center());
+	return ch::vec_normalize(projectile_.getCirclePos() - rect_.center());
 }
 
 float LauncherSling::getProjectileInitialVelocityInMetersPerSecond() const {
-	return ch::vec_magnitude(circle_.getCirclePos() - rect_.center()) / pixelsPerMeter_;
+	return ch::vec_magnitude(projectile_.getCirclePos() - rect_.center()) / pixelsPerMeter_;
 }
 
 bool LauncherSling::isProjectileHovered(ch::vec_t mousePos) const {
-	return ch::collision::circle_contains(circle_.getCircle(), mousePos);
+	return ch::collision::circle_contains(projectile_.getCircle(), mousePos);
 }
 
 void LauncherSling::updatePosition(ch::vec_t newPos) {
-	if (ch::collision::aabb_contains(zone_, ch::AABB(newPos, rect_.size))) {
+	if (ch::collision::aabb_contains(boundaries_, ch::AABB(newPos, rect_.size))) {
 		rect_.pos = newPos;
 		rectShape_.setPosition(rect_.pos);
 	}
@@ -40,6 +40,6 @@ void LauncherSling::draw(sf::RenderTarget& target, sf::RenderStates states) cons
 	target.draw(rectShape_);
 	sf::VertexArray line(sf::PrimitiveType::Lines);
 	line.append(sf::Vertex(rect_.center(), color_palette::LIGHT_TEXT));
-	line.append(sf::Vertex(circle_.getCirclePos(), color_palette::LIGHT_TEXT));
+	line.append(sf::Vertex(projectile_.getCirclePos(), color_palette::LIGHT_TEXT));
 	target.draw(line);
 }

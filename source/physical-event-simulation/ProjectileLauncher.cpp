@@ -6,7 +6,7 @@ constexpr float TEXT_MARGIN = 10.f;
 
 ProjectileLauncher::ProjectileLauncher(ch::AABB zone, float pixelsPerMeter, float projectileRadiusInMeters) :
 	projectile_(ch::Circle({ zone.pos.x + zone.size.x, zone.pos.y + zone.size.y / 2.f }, projectileRadiusInMeters * pixelsPerMeter), ch::AABB(zone.pos, { zone.size.x * 10.f, zone.size.y }), true),
-	slingshot_(zone, projectile_, pixelsPerMeter),
+	sling_(zone, projectile_, pixelsPerMeter),
 	pixelsPerMeter_(pixelsPerMeter)
 {
 	zone_.setSize(zone.size);
@@ -17,7 +17,7 @@ ProjectileLauncher::ProjectileLauncher(ch::AABB zone, float pixelsPerMeter, floa
 	color.a = 120;
 	projectile_.setFillColor(color);
 
-	topLeftInformations_.init(ch::AABB(zone.pos + ch::vec_t{ TEXT_MARGIN, TEXT_MARGIN }, { 200.f, 80.f }), TINY_TEXT_SIZE, "informations\nsur\nplusieurs\nlignes");
+	topLeftInformations_.init(ch::AABB(zone.pos + ch::vec_t{ TEXT_MARGIN, TEXT_MARGIN }, { 200.f, 80.f }), TINY_TEXT, "informations\nsur\nplusieurs\nlignes");
 	topLeftInformations_.setTextColor(color_palette::DARK_TEXT);
 
 	projectileMass_ = 1.f;
@@ -25,11 +25,11 @@ ProjectileLauncher::ProjectileLauncher(ch::AABB zone, float pixelsPerMeter, floa
 
 void ProjectileLauncher::update(const sf::Event& event, ch::vec_t mousePosOnWindow) {
 	if (!projectile_.updateDragAndDrop(event, mousePosOnWindow)) {
-		slingshot_.updateDragAndDrop(event, mousePosOnWindow);
+		sling_.updateDragAndDrop(event, mousePosOnWindow);
 	}
 
 	if (event.type == sf::Event::MouseWheelMoved) {
-		if (slingshot_.isProjectileHovered(mousePosOnWindow)) {
+		if (sling_.isProjectileHovered(mousePosOnWindow)) {
 			auto delta = event.mouseWheel.delta;
 			projectileMass_ = std::min(std::max(projectileMass_ + delta * OBJ_MASS_INCREMENT, MIN_OBJ_MASS), MAX_OBJ_MASS);
 		}
@@ -39,12 +39,12 @@ void ProjectileLauncher::update(const sf::Event& event, ch::vec_t mousePosOnWind
 }
 
 CircleRigidBody ProjectileLauncher::constructCircleRigidBody() const {
-	return CircleRigidBody(projectile_.getCircle(), projectileMass_, slingshot_.getProjectileInitialVelocityInMetersPerSecond() * slingshot_.getProjectileDirection() * pixelsPerMeter_ * SLINGSHOT_SPEED_MULTIPLIER);
+	return CircleRigidBody(projectile_.getCircle(), projectileMass_, sling_.getProjectileInitialVelocityInMetersPerSecond() * sling_.getProjectileDirection() * pixelsPerMeter_ * SLINGSHOT_SPEED_MULTIPLIER);
 }
 
 void ProjectileLauncher::updateInformations() {
-	float velocity = slingshot_.getProjectileInitialVelocityInMetersPerSecond();
-	auto dir = slingshot_.getProjectileDirection();
+	float velocity = sling_.getProjectileInitialVelocityInMetersPerSecond();
+	auto dir = sling_.getProjectileDirection();
 	float angle = 180.f * atan2(-dir.y, dir.x) / ch::FLT_PI;
 
 	std::string text = "Masse : " + utils::float_to_fixed_string(projectileMass_) + " kg\n";
@@ -58,5 +58,5 @@ void ProjectileLauncher::draw(sf::RenderTarget& target, sf::RenderStates states)
 	target.draw(zone_);
 	target.draw(topLeftInformations_);
 	target.draw(projectile_);
-	target.draw(slingshot_);
+	target.draw(sling_);
 }

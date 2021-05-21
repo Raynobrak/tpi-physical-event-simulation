@@ -1,12 +1,15 @@
 #include "CircleRigidBody.h"
 #include "utils.h"
 
+constexpr unsigned OBJECTS_TRACE_HISTORY_LENGTH = 20u;
+constexpr float OBJECTS_TIME_BETWEEN_TRACE_SAVE = 0.02f;
+
 CircleRigidBody::CircleRigidBody(ch::Circle circle, float mass, ch::vec_t initialVelocity) : 
 	circle_(circle), 
 	mass_(mass), 
 	vel_(initialVelocity), 
 	timeSinceLastTraceSave_(0.f),
-	massLabel_(ch::collision::enclosingAABB(circle), TINY_TEXT_SIZE, utils::float_to_fixed_string(mass))
+	massLabel_(ch::collision::enclosingAABB(circle), TINY_TEXT, utils::float_to_fixed_string(mass))
 {
 	massLabel_.setTextColor(color_palette::DARK_TEXT);
 

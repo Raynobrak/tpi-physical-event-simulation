@@ -16,7 +16,7 @@ ScaleIcon::ScaleIcon(ch::vec_t center, float pixelsPerMeter) : currentColor_(OPA
 
 	zone_ = ch::AABB(center - ch::vec_t(SCALE_WIDTH, SCALE_HEIGHT) / 2.f, { SCALE_WIDTH, SCALE_HEIGHT });
 
-	label_.init(zone_, TINY_TEXT_SIZE, utils::float_to_fixed_string(SCALE_LENGTH_IN_METERS) + " mètres");
+	label_.init(zone_, TINY_TEXT, utils::float_to_fixed_string(SCALE_LENGTH_IN_METERS) + " mètres");
 	label_.setPosition(zone_.pos + ch::vec_t(0.f, LABEL_VERTICAL_OFFSET));
 }
 

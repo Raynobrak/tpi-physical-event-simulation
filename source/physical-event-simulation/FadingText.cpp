@@ -4,7 +4,7 @@
 constexpr float LABEL_ZONE_SIZE = 500.f;
 
 FadingText::FadingText(ch::vec_t center, std::string text, float fadingTime) : 
-    Label(ch::AABB(center.x - LABEL_ZONE_SIZE / 2.f, center.y - LABEL_ZONE_SIZE / 2.f, LABEL_ZONE_SIZE, LABEL_ZONE_SIZE), MEDIUM_TEXT_SIZE, text),
+    Label(ch::AABB(center.x - LABEL_ZONE_SIZE / 2.f, center.y - LABEL_ZONE_SIZE / 2.f, LABEL_ZONE_SIZE, LABEL_ZONE_SIZE), MEDIUM_TEXT, text),
     timeLeft_(fadingTime),
     fadingTime_(timeLeft_)
 {}

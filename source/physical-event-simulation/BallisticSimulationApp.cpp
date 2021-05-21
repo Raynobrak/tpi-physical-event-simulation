@@ -105,15 +105,23 @@ void BallisticSimulationApp::update(float dt) {
 }
 
 void BallisticSimulationApp::applyDragForce(float dt) {
-	ch::vec_t fluidVelocity = windPicker_.computeWindIntensityAndDirection();
+	// On récupère la vélocité de l'air (vitesse et direction du vent) à partir du WindPicker
+	ch::vec_t fluidVel = windPicker_.computeWindIntensityAndDirection();
 
-	ch::vec_t projectileVelocity = projectile_->getVelocity() / PX_PER_METER_BALLISTIC;
-	float mass = projectile_->getMass();
-	float radius = OBJECTS_RADIUS_BALLISTIC;
+	// Vélocité du projectile
+	ch::vec_t projVel = projectile_->getVelocity() / PX_PER_METER_BALLISTIC;
 
-	float relativeVelocity = ch::vec_magnitude(fluidVelocity - projectileVelocity);
+	// Masse et rayon
+	float m = projectile_->getMass();
+	float r = OBJECTS_RADIUS_BALLISTIC;
 
-	ch::vec_t acceleration = (RHO * PI * radius * radius * SPHERE_DRAG_COEFFICIENT * relativeVelocity * (fluidVelocity - projectileVelocity)) / (2.f * mass);
+	// Vélocité relative entre le fluide et le projectile
+	float relativeVelocity = ch::vec_magnitude(fluidVel - projVel);
+
+	// Calcul de l'accélération
+	ch::vec_t acceleration = (RHO * PI * r * r * SPHERE_DRAG_COEFFICIENT * relativeVelocity * (fluidVel - projVel)) / (2.f * m);
+
+	// Application de l'accélération. On multiplie par le pas de temps pour que l'accélération soit proportionnelle au temps écoulé
 	projectile_->accelerate(acceleration * dt);
 }
 

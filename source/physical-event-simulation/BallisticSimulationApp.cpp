@@ -26,8 +26,8 @@ const std::string TARGET_MISSED_TEXT = "Raté...";
 const std::string APPLICATION_TITLE = "Expérience de balistique - Lucas Charbonnier";
 
 constexpr float RHO = 1.225f; // Densité de l'air, en kg/m^3, au niveau de la mer, à 15°C
-constexpr float PI = ch::FLT_PI;
-constexpr float SPHERE_DRAG_COEFFICIENT = 0.47f;
+constexpr float PI = ch::FLT_PI; // Alias d'une autre constante de PI
+constexpr float SPHERE_DRAG_COEFFICIENT = 0.47f; // Coefficient de frottement des objets sphériques
 
 BallisticSimulationApp::BallisticSimulationApp() :
 	launcher_(ch::AABB({ 0.f,0.f }, { LAUNCHER_WIDTH, SIMULATION_WINDOW_HEIGHT }), PX_PER_METER_BALLISTIC, OBJECTS_RADIUS_BALLISTIC),

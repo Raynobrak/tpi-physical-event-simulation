@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "physical-event-simulation", "physical-event-simulation.vcxproj", "{A15BFB02-EBEF-47D8-BC32-4D8ABA7B6C17}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "setup-pes", "..\setup-pes\setup-pes.vdproj", "{C318D331-626E-4BE3-9FDA-576BE7D7DF36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,10 @@ Global
 		{A15BFB02-EBEF-47D8-BC32-4D8ABA7B6C17}.Release|x64.Build.0 = Release|x64
 		{A15BFB02-EBEF-47D8-BC32-4D8ABA7B6C17}.Release|x86.ActiveCfg = Release|Win32
 		{A15BFB02-EBEF-47D8-BC32-4D8ABA7B6C17}.Release|x86.Build.0 = Release|Win32
+		{C318D331-626E-4BE3-9FDA-576BE7D7DF36}.Debug|x64.ActiveCfg = Debug
+		{C318D331-626E-4BE3-9FDA-576BE7D7DF36}.Debug|x86.ActiveCfg = Debug
+		{C318D331-626E-4BE3-9FDA-576BE7D7DF36}.Release|x64.ActiveCfg = Release
+		{C318D331-626E-4BE3-9FDA-576BE7D7DF36}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

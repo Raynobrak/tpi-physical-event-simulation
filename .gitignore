@@ -9,3 +9,4 @@ source/physical-event-simulation/x64
 *.lib
 *.pdb
 *.cmake
+*.msi

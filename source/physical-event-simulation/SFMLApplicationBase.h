@@ -39,6 +39,9 @@ protected:
 	// Méthode utilitaire permettant d'afficher un sf::Drawable sur la fenêtre.
 	void drawOnWindow(const sf::Drawable& d, const sf::RenderStates states = sf::RenderStates::Default);
 
+	// Change l'icône de la fenêtre
+	void setWindowIcon();
+
 	// Fenêtre SFML sous-jacente.
 	sf::RenderWindow window_;
 private: 

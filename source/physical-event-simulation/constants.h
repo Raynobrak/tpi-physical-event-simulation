@@ -23,7 +23,7 @@ constexpr float SLINGSHOT_SPEED_MULTIPLIER = 2.f;
 constexpr float GRAVITY = 9.81f;
 
 // Rayon en mètres de la cible dans la simulation de balistique
-constexpr float TARGET_RAD = 0.1f;
+constexpr float TARGET_RAD = 0.3f;
 
 // Constantes concernant les tailles de police à utiliser.
 // Ces valeurs n'ont pas été choisies au hasard, si on choisit des valeurs différentes,

@@ -3,7 +3,7 @@
 
 WindPicker::WindPicker(ch::vec_t center) : 
 	clickableZone_(center, WINDPICKER_RADIUS_PX),
-	selectedPoint_(center - ch::vec_t(WINDPICKER_RADIUS_PX, 0.f)),
+	selectedPoint_(center),
 	isDragging_(false)
 {}
 

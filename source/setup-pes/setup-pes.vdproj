@@ -4,9 +4,9 @@
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
 "ProjectName" = "8:setup-pes"
-"LanguageId" = "3:1033"
+"LanguageId" = "3:1036"
 "CodePage" = "3:1252"
-"UILanguageId" = "3:1033"
+"UILanguageId" = "3:1036"
 "SccProjectName" = "8:"
 "SccLocalPath" = "8:"
 "SccAuxPath" = "8:"
@@ -15,7 +15,43 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_2309469542FB4AF0999FDBA1B57B5B6C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3323553CE8C14E0DB69B579FDBA28866"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_37F86229CF1A496DBBA29FE82EE58D6D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5554F5695B364D6C9C4689173AD0D169"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_55AEED06CF0145EAA2BAE8CD017EC622"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7AF9F3A1DF1F4BD6A2F09A007A42FB56"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BB565760D0B74F9D8BB11AC6125817BA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -37,6 +73,17 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                }
+            }
         }
         "Release"
         {
@@ -53,6 +100,17 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                }
+            }
         }
     }
     "Deployable"
@@ -74,6 +132,126 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2309469542FB4AF0999FDBA1B57B5B6C"
+            {
+            "SourcePath" = "8:..\\physical-event-simulation\\sfml-window-2.dll"
+            "TargetName" = "8:sfml-window-2.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_D741829962974A019CDF5002D0AC4138"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3323553CE8C14E0DB69B579FDBA28866"
+            {
+            "SourcePath" = "8:C:\\Users\\Lucas\\Desktop\\pes-icon.ico"
+            "TargetName" = "8:pes-icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_D741829962974A019CDF5002D0AC4138"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_37F86229CF1A496DBBA29FE82EE58D6D"
+            {
+            "SourcePath" = "8:..\\physical-event-simulation\\sfml-graphics-2.dll"
+            "TargetName" = "8:sfml-graphics-2.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_D741829962974A019CDF5002D0AC4138"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5554F5695B364D6C9C4689173AD0D169"
+            {
+            "SourcePath" = "8:..\\physical-event-simulation\\bebas_neue_font\\BebasNeue-Regular.ttf"
+            "TargetName" = "8:BebasNeue-Regular.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_7FDC852BBE30417C88FBB567203B83F8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7AF9F3A1DF1F4BD6A2F09A007A42FB56"
+            {
+            "SourcePath" = "8:..\\physical-event-simulation\\sfml-system-2.dll"
+            "TargetName" = "8:sfml-system-2.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_D741829962974A019CDF5002D0AC4138"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BB565760D0B74F9D8BB11AC6125817BA"
+            {
+            "SourcePath" = "8:..\\physical-event-simulation\\pes-icon.PNG"
+            "TargetName" = "8:pes-icon.PNG"
+            "Tag" = "8:"
+            "Folder" = "8:_D741829962974A019CDF5002D0AC4138"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -112,6 +290,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_7FDC852BBE30417C88FBB567203B83F8"
+                    {
+                    "Name" = "8:bebas_neue_font"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_8D78E359B7D54335818E99891C32E12A"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -123,15 +312,15 @@
         }
         "MsiBootstrapper"
         {
-        "LangId" = "3:1033"
+        "LangId" = "3:1036"
         "RequiresElevation" = "11:FALSE"
         }
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:setup-pes"
+        "ProductName" = "8:Physical Event Simulation"
         "ProductCode" = "8:{E71B94EB-18B5-444C-860F-6E0BB97ADE4B}"
-        "PackageCode" = "8:{A57C7761-95C0-4716-9F8F-EAE92E3EBE2D}"
+        "PackageCode" = "8:{BF2AE986-A34C-4106-86C1-C3BC302C1A6B}"
         "UpgradeCode" = "8:{BBC61A14-1D48-486C-A9BA-48052B4DDCE1}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -139,16 +328,16 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:ETML"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:setup-pes"
+        "Title" = "8:setup-physical-event-simulation-32"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Lucas Charbonnier"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:Simulations de collisions et de balistique"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_3323553CE8C14E0DB69B579FDBA28866"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -251,6 +440,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_28F36EAAB148403EBC46C1BF57FC01DF"
+            {
+            "Name" = "8:Physical Event Simulation"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_55AEED06CF0145EAA2BAE8CD017EC622"
+            "Folder" = "8:_3DFCEDE2D989458382D8B25994E95DDD"
+            "WorkingFolder" = "8:_D741829962974A019CDF5002D0AC4138"
+            "Icon" = "8:_3323553CE8C14E0DB69B579FDBA28866"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -652,7 +855,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_55AEED06CF0145EAA2BAE8CD017EC622"
             {
-            "SourcePath" = "8:..\\physical-event-simulation\\x64\\Release\\physical-event-simulation.exe"
+            "SourcePath" = "8:..\\physical-event-simulation\\Release\\physical-event-simulation.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D741829962974A019CDF5002D0AC4138"

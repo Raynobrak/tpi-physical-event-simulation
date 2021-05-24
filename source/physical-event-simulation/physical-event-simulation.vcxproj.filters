@@ -23,6 +23,7 @@
     <ClCompile Include="FadingText.cpp" />
     <ClCompile Include="WindPicker.cpp" />
     <ClCompile Include="VectorArrow.cpp" />
+    <ClCompile Include="get_application_icon_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="charbrary">
@@ -54,5 +55,6 @@
     <ClInclude Include="WindPicker.h" />
     <ClInclude Include="VectorArrow.h" />
     <ClInclude Include="SFMLApplicationSettings.h" />
+    <ClInclude Include="get_application_icon_image.h" />
   </ItemGroup>
 </Project>

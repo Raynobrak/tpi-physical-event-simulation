@@ -25,10 +25,6 @@ const std::string TARGET_HIT_TEXT = "Cible atteinte !";
 const std::string TARGET_MISSED_TEXT = "Raté...";
 const std::string APPLICATION_TITLE = "Expérience de balistique - Lucas Charbonnier";
 
-constexpr float RHO = 1.225f; // Densité de l'air, en kg/m^3, au niveau de la mer, à 15°C
-constexpr float PI = ch::FLT_PI; // Alias d'une autre constante de PI
-constexpr float SPHERE_DRAG_COEFFICIENT = 0.47f; // Coefficient de frottement des objets sphériques
-
 BallisticSimulationApp::BallisticSimulationApp() :
 	launcher_(ch::AABB({ 0.f,0.f }, { LAUNCHER_WIDTH, SIMULATION_WINDOW_HEIGHT }), PX_PER_METER_BALLISTIC, OBJECTS_RADIUS_BALLISTIC),
 	launchSimulationButton_(ch::AABB(SIMULATION_WINDOW_WIDTH / 2.f - BUTTON_WIDTH / 2.f, BUTTON_TOP_MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT), TINY_TEXT, "---"),
@@ -119,7 +115,7 @@ void BallisticSimulationApp::applyDragForce(float dt) {
 	float relativeVelocity = ch::vec_magnitude(fluidVel - projVel);
 
 	// Calcul de l'accélération
-	ch::vec_t acceleration = (RHO * PI * r * r * SPHERE_DRAG_COEFFICIENT * relativeVelocity * (fluidVel - projVel)) / (2.f * m);
+	ch::vec_t acceleration = (RHO * ch::FLT_PI * r * r * SPHERE_DRAG_COEFFICIENT * relativeVelocity * (fluidVel - projVel)) / (2.f * m);
 
 	// Application de l'accélération. On multiplie par le pas de temps pour que l'accélération soit proportionnelle au temps écoulé
 	projectile_->accelerate(acceleration * dt);

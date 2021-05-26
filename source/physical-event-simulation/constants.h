@@ -22,6 +22,12 @@ constexpr float SLINGSHOT_SPEED_MULTIPLIER = 2.f;
 // Force de gravité en m/s
 constexpr float GRAVITY = 9.81f;
 
+// Densité de l'air, en kg/m^3, au niveau de la mer, à 15°C
+constexpr float RHO = 1.225f; 
+
+// Coefficient de frottement des objets sphériques
+constexpr float SPHERE_DRAG_COEFFICIENT = 0.47f; 
+
 // Rayon en mètres de la cible dans la simulation de balistique
 constexpr float TARGET_RAD = 0.3f;
 

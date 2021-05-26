@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "MainMenuApplication.h"
 
 int main() {

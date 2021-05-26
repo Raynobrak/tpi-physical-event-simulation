@@ -17,7 +17,6 @@ ch::vec_t WindPicker::computeWindIntensityAndDirection() const {
 }
 
 void WindPicker::update(sf::Event event, ch::vec_t mousePos) {
-	bool leftHold = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
 	bool leftClick = event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left;
 	bool leftRelease = event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Button::Left;
 	

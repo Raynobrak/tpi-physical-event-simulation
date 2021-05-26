@@ -163,8 +163,6 @@
     <ClCompile Include="ConfigurableCircle.cpp" />
     <ClCompile Include="DraggableCircle.cpp" />
     <ClCompile Include="FadingText.cpp" />
-    <ClCompile Include="get_application_icon_image.cpp" />
-    <ClCompile Include="get_default_font.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="LauncherSling.cpp" />
     <ClCompile Include="MainMenuApplication.cpp" />
@@ -187,8 +185,6 @@
     <ClInclude Include="ConfigurableCircle.h" />
     <ClInclude Include="DraggableCircle.h" />
     <ClInclude Include="FadingText.h" />
-    <ClInclude Include="get_application_icon_image.h" />
-    <ClInclude Include="get_default_font.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="LauncherSling.h" />
     <ClInclude Include="MainMenuApplication.h" />

@@ -9,7 +9,6 @@
     <ClCompile Include="SFMLApplicationBase.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Label.cpp" />
-    <ClCompile Include="get_default_font.cpp" />
     <ClCompile Include="BallisticSimulationApp.cpp" />
     <ClCompile Include="CollisionSimulationApp.cpp" />
     <ClCompile Include="ProjectileLauncher.cpp" />
@@ -23,7 +22,6 @@
     <ClCompile Include="FadingText.cpp" />
     <ClCompile Include="WindPicker.cpp" />
     <ClCompile Include="VectorArrow.cpp" />
-    <ClCompile Include="get_application_icon_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="charbrary">
@@ -38,7 +36,6 @@
     <ClInclude Include="SFMLApplicationBase.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Label.h" />
-    <ClInclude Include="get_default_font.h" />
     <ClInclude Include="color_palette.h" />
     <ClInclude Include="BallisticSimulationApp.h" />
     <ClInclude Include="CollisionSimulationApp.h" />
@@ -55,6 +52,5 @@
     <ClInclude Include="WindPicker.h" />
     <ClInclude Include="VectorArrow.h" />
     <ClInclude Include="SFMLApplicationSettings.h" />
-    <ClInclude Include="get_application_icon_image.h" />
   </ItemGroup>
 </Project>

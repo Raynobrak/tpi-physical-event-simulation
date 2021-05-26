@@ -1,5 +1,5 @@
 #include "Label.h"
-#include "get_default_font.h"
+#include "utils.h"
 
 const sf::Color DEFAULT_TEXT_FORECOLOR = color_palette::LIGHT_TEXT;
 
@@ -14,7 +14,7 @@ void Label::init(ch::AABB zone, unsigned characterSize, std::string text) {
 	textZone_ = zone;
 	text_.setCharacterSize(characterSize);
 	text_.setString(text);
-	text_.setFont(get_default_font());
+	text_.setFont(utils::get_default_font());
 	text_.setFillColor(DEFAULT_TEXT_FORECOLOR);
 	centerText();
 }

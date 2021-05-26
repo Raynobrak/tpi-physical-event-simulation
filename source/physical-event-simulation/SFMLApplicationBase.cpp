@@ -1,5 +1,5 @@
 #include "SFMLApplicationBase.h"
-#include "get_application_icon_image.h"
+#include "utils.h"
 
 void SFMLApplicationBase::initApplication(SFMLApplicationSettings settings) {
 	window_.create({ settings.windowWidth, settings.windowHeight }, settings.applicationName, sf::Style::Titlebar | sf::Style::Close);
@@ -76,7 +76,7 @@ void SFMLApplicationBase::drawOnWindow(const sf::Drawable& d, const sf::RenderSt
 }
 
 void SFMLApplicationBase::setWindowIcon() {
-	auto& icon = get_application_icon_image();
+	auto& icon = utils::get_application_icon_image();
 	auto size = icon.getSize();
 	window_.setIcon(size.x, size.y, icon.getPixelsPtr());
 }

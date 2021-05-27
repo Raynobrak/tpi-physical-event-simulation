@@ -1,5 +1,0 @@
-\frac{1}{2}m_a{v_{a1}}^2 + \frac{1}{2}m_b{v_{b1}}^2 = \frac{1}{2}m_a{(v_{a1} + \frac{j}{m_a})}^2 + \frac{1}{2}m_b{(v_{b1} + \frac{j}{m_b})}^2
-
-j = \frac{2(v_{b1}-v_{a1})}{\frac{1}{m_a}+\frac{1}{m_b}}
-
-j = \frac{2\vec{n} \cdot (\vec{v_{b1}}-\vec{v_{a1}})}{\frac{1}{m_a}+\frac{1}{m_b}}

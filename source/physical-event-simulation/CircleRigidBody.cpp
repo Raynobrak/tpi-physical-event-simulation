@@ -101,9 +101,10 @@ float CircleRigidBody::inverseMass() const {
 }
 
 void CircleRigidBody::savePosition() {
-	trace_.push_back(circle_.pos);
-	if (trace_.size() > OBJECTS_TRACE_HISTORY_LENGTH) {
-		trace_.pop_front();
+	trace_.push_back(circle_.pos); // Ajout de la position actuelle à l'arrière de la file d'attente
+
+	if (trace_.size() > OBJECTS_TRACE_HISTORY_LENGTH) { // Si la file d'attente dépasse sa taille max...
+		trace_.pop_front(); // On enlève la position à l'avant de la file d'attente
 	}
 }
 

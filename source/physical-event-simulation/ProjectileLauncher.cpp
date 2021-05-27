@@ -28,9 +28,21 @@ void ProjectileLauncher::update(const sf::Event& event, ch::vec_t mousePosOnWind
 		sling_.updateDragAndDrop(event, mousePosOnWindow);
 	}
 
-	if (event.type == sf::Event::MouseWheelMoved) {
-		if (sling_.isProjectileHovered(mousePosOnWindow)) {
-			auto delta = event.mouseWheel.delta;
+	if (event.type == sf::Event::MouseWheelMoved || event.type == sf::Event::KeyPressed) {
+		int delta = 0;
+		if (event.type == sf::Event::MouseWheelMoved) {
+			delta = event.mouseWheel.delta;
+		}
+		else if (event.type == sf::Event::KeyPressed) {
+			if (event.key.code == sf::Keyboard::Up) {
+				delta = 1;
+			}
+			else if (event.key.code == sf::Keyboard::Down) {
+				delta = -1;
+			}
+		}
+
+		if (ch::collision::circle_contains(projectile_.getCircle(), mousePosOnWindow)) {
 			projectileMass_ = std::min(std::max(projectileMass_ + delta * OBJ_MASS_INCREMENT, MIN_OBJ_MASS), MAX_OBJ_MASS);
 		}
 	}
